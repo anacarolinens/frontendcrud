@@ -7,7 +7,6 @@ const UserList = () => {
     const [users, setUsers] = useState([]);
     const [userToEdit, setUserToEdit] = useState(null);
     
-    // Read all users from the API
     const fetchUsers = async () => {
         try {
             const response = await api.get('/users');
@@ -41,8 +40,8 @@ const UserList = () => {
         setUserToEdit(user);
     };
 
-    const handlerAddUser = (user) => {
-        setUsers([...users, user]);
+    const handleAddUser = (newUser) => {
+        setUsers([...users, newUser]);
     };  
 
     return (
@@ -52,7 +51,7 @@ const UserList = () => {
                 fetchUsers={fetchUsers} 
                 userToEdit={userToEdit} 
                 setUserToEdit={setUserToEdit}
-                addUser={handlerAddUser}
+                addUser={handleAddUser}
             />
             <ul>
                 {users.map(user => (

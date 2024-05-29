@@ -10,34 +10,27 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
             setName(userToEdit.name);
             setEmail(userToEdit.email);
         }
-    }
-    , [userToEdit]);
+    }, [userToEdit]);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            // chamar um PUT para atualizar o usuário
             if (userToEdit) {
-                const user = {
+                await api.put(`/users/${userToEdit.id}`, {
                     name: name,
-                    email: email,
-                };
-                api.put(`/users/${userToEdit.id}`, user);
+                    email: email
+                });
                 setUserToEdit(null);
-
-            } else {
-                //Apenas para users
-                const response = api.post('/users', user);
+            } else { //only new users
+                const response = await api.post('/users', {
+                    name: name,
+                    email: email
+                });
+                //Como a API não salva o usuário, adicionamos o novo usuário a lista
                 addUser(response.data);
             }
 
 
-            // chamar um POST para criar um novo usuário
-            const user = {
-                name: name,
-                email: email,
-            };
-            api.post('/users', user);
 
             //fetchUsers();
             setName('');
@@ -54,17 +47,15 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
         <form onSubmit={handleSubmit}>
             <input 
                 type="text" 
-                name="nome" 
-                id="nome" 
-                placeholder="Nome" 
+                id="name"
+                placeholder="Nome do Usuário"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
             />
             <input 
-                type="email" 
-                name="email" 
+                type="text"
                 id="email" 
-                placeholder="Email" 
+                placeholder="Email do usuário"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
             />

@@ -20,16 +20,33 @@ const UserList = () => {
     useEffect(() => {
         fetchUsers();
     }, []);
-        
+    
+    const handleDelete = async (id) => {
+        // Chamar a api enviando o id do usuário usando o método delete
+        try {
+            console.log(id)
+            await api.delete(`/users/${id}`);
+            setUsers(users.filter(user => user.id !== id));
+        }
+        catch (error) {
+            console.error('Erro ao excluir o usuário:', error);
+        }
+    };
 
     return (
         <div>
             <h2>Lista de usuários</h2>
             <ul>
                 {users.map(user => (
-                    <li key={user.id}>{user.name} - {user.email} </li>
-                ))
-                }
+                    <li key={user.id}>
+                        {user.name} - {user.email} 
+                        <button onClick={() => handleDelete(user.id)}>
+                            Excluir
+                        </button>
+                    </li>
+
+                ))}
+
             </ul>
         </div>
     );

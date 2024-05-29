@@ -9,7 +9,6 @@ const UserList = () => {
     const fetchUsers = async () => {
         try {
             const response = await api.get('/users');
-            console.log(users);
             setUsers(response.data);
         }
         catch (error) {
@@ -17,6 +16,7 @@ const UserList = () => {
         }
     };   
     
+    // Serve para executar uma função quando o componente é montado
     useEffect(() => {
         fetchUsers();
     }, []);
@@ -26,7 +26,10 @@ const UserList = () => {
         <div>
             <h2>Lista de usuários</h2>
             <ul>
-                <li>Nome</li>
+                {users.map(user => (
+                    <li key={user.id}>{user.name} - {user.email} </li>
+                ))
+                }
             </ul>
         </div>
     );

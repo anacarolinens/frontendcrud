@@ -49,26 +49,50 @@ const UserList = () => {
     };  
 
     return (
-        <div>
-            <h2>Lista de usuários</h2>
-            <UserForm 
-                fetchUsers={fetchUsers} 
-                userToEdit={userToEdit} 
+        <div className="container mx-auto p-4">
+            <h1 className="text-3xl font-bold text-center text-gray-800 mb-8 mt-5">CRUD de usuários</h1>
+            <UserForm
+                fetchUsers={fetchUsers}
+                userToEdit={userToEdit}
                 setUserToEdit={setUserToEdit}
                 addUser={handleAddUser}
             />
-            <ul>
-                {users.map(user => (
-                    <li key={user.id}>
-                        {user.name} - {user.email}
-                        <button onClick={() => handleEdit(user)}>Editar</button>
-                        <button onClick={() => handleDelete(user.id)}>Excluir</button>
-                    </li>
-                ))}
-
-            </ul>
+            <div className="overflow-x-auto">
+                <table className="min-w-full bg-white border border-gray-200 mt-20 mb-20">
+                    <thead>
+                        <tr className="bg-blue-700">
+                            <th className="px-2 py-2 border-b border-gray-200 text-left text-sm font-medium text-white uppercase tracking-wider text-center">Nome</th>
+                            <th className="px-2 py-2 border-b border-gray-200 text-left text-sm font-medium text-white uppercase tracking-wider text-center">Email</th>
+                            <th className="px-2 py-3 border-b border-gray-200 text-left text-sm font-medium text-white uppercase tracking-wider text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                        {users.map((user) => (
+                            <tr key={user.id}>
+                                <td className="px-2 py-2 whitespace-nowrap">{user.name}</td>
+                                <td className="px-2 py-2 whitespace-nowrap">{user.email}</td>
+                                <td className="px-2 py-2 whitespace-nowrap flex justify-center text-sm">
+                                    <button
+                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded mr-2"
+                                        onClick={() => handleEdit(user)}
+                                    >
+                                        Editar
+                                    </button>
+                                    <button
+                                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded"
+                                        onClick={() => handleDelete(user.id)}
+                                    >
+                                        Excluir
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
-    };
+};
+
 
 export default UserList;

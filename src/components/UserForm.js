@@ -48,13 +48,17 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
     };
     
     return (
-        <form onSubmit={handleSubmit}>
+        <form 
+            onSubmit={handleSubmit}
+            className="mt-10"
+        >
             <input 
                 type="text" 
                 id="name"
                 placeholder="Nome do Usuário"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
+                className="mx-5 appearance-none bg-white border border-gray-300 rounded-md py-2 px-4 text-sm leading-tight focus:outline-none focus:border-blue-500"
             />
             <input 
                 type="text"
@@ -62,9 +66,14 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
                 placeholder="Email do usuário"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
+                className="mx-5 appearance-none bg-white border border-gray-300 rounded-md py-2 px-4 text-sm leading-tight focus:outline-none focus:border-blue-500"
             />
-            <button type="submit">
-                Enviar
+            <button 
+                type="submit"
+                className="mt-10 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            
+            >
+                Salvar
             </button>
         
         </form>

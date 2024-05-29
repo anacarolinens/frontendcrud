@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api";
 
-const UserForm = ({fetchUsers, userToEdit, setUserToEdit}) => {
+const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
 
@@ -26,8 +26,11 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit}) => {
                 setUserToEdit(null);
 
             } else {
-                api.post('/users', user);
+                //Apenas para users
+                const response = api.post('/users', user);
+                addUser(response.data);
             }
+
 
             // chamar um POST para criar um novo usuário
             const user = {
@@ -36,7 +39,7 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit}) => {
             };
             api.post('/users', user);
 
-            fetchUsers();
+            //fetchUsers();
             setName('');
             setEmail('');
         }

@@ -39,13 +39,21 @@ const UserList = () => {
        
     const handleEdit = (user) => {  
         setUserToEdit(user);
-    }
+    };
+
+    const handlerAddUser = (user) => {
+        setUsers([...users, user]);
+    };  
 
     return (
         <div>
             <h2>Lista de usuários</h2>
-            <UserForm fetchUsers={fetchUsers} />
-            <UserForm fetchUsers={fetchUsers} userToEdit={userToEdit} setUserToEdit={setUserToEdit}/>
+            <UserForm 
+                fetchUsers={fetchUsers} 
+                userToEdit={userToEdit} 
+                setUserToEdit={setUserToEdit}
+                addUser={handlerAddUser}
+            />
             <ul>
                 {users.map(user => (
                     <li key={user.id}>

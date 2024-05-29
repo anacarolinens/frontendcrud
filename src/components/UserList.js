@@ -1,6 +1,7 @@
 import api from '../api';
 import { useEffect, useState } from 'react';
 import UserForm from './UserForm';
+import { toast } from 'sonner';
  
 const UserList = () => {
 
@@ -14,6 +15,7 @@ const UserList = () => {
         }
         catch (error) {
             console.error('Erro ao obter usuários:', error);
+            toast.error('Erro ao obter usuários');
         }
     };  
     
@@ -29,9 +31,11 @@ const UserList = () => {
             console.log(id)
             await api.delete(`/users/${id}`);
             setUsers(users.filter(user => user.id !== id));
+            toast.success('Usuário excluído com sucesso');
         }
         catch (error) {
             console.error('Erro ao excluir o usuário:', error);
+            toast.error('Erro ao excluir o usuário');
         }
     };
 

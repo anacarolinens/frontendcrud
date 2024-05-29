@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api";
+import { toast } from "sonner";
 
 const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
     const [name, setName] = useState('');
@@ -21,11 +22,13 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
                     email: email
                 });
                 setUserToEdit(null);
+                toast.success('Usuário atualizado com sucesso');
             } else { //only new users
                 const response = await api.post('/users', {
                     name: name,
                     email: email
                 });
+                toast.success('Usuário salvo com sucesso');
                 //Como a API não salva o usuário, adicionamos o novo usuário a lista
                 addUser(response.data);
             }
@@ -38,6 +41,7 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
         }
         catch (error) {
             console.error('Erro ao salvar usuário:', error);
+            toast.error('Erro ao salvar usuário');
         }
     
         

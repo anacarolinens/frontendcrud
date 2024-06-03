@@ -55,18 +55,18 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
             <input 
                 type="text" 
                 id="name"
-                placeholder="Nome do Usuário"
+                placeholder="Digite o nome do usuário"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                className="mx-5 appearance-none bg-white border border-gray-300 rounded-md py-2 px-4 text-sm leading-tight focus:outline-none focus:border-blue-500"
+                className="mx-5 appearance-none bg-white border border-gray-300 rounded-md py-3 px-4 text-sm leading-tight focus:outline-none focus:border-blue-500 w-80"
             />
             <input 
                 type="text"
                 id="email" 
-                placeholder="Email do usuário"
+                placeholder="Digite o email do usuário"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                className="mx-5 appearance-none bg-white border border-gray-300 rounded-md py-2 px-4 text-sm leading-tight focus:outline-none focus:border-blue-500"
+                className="mx-5 appearance-none bg-white border border-gray-300 rounded-md py-3 px-4 text-sm leading-tight focus:outline-none focus:border-blue-500 w-80"
             />
             <button 
                 type="submit"

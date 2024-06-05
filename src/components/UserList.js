@@ -17,7 +17,7 @@ const UserList = () => {
         }
         catch (error) {
             console.error('Erro ao obter usuários:', error);
-            toast.error('Erro ao obter usuários');
+            toast.error('Erro ao obter usuários', { position: 'top-right' });
         }
     };  
     
@@ -33,11 +33,11 @@ const UserList = () => {
             console.log(id)
             await api.delete(`/users/${id}`);
             setUsers(users.filter(user => user.id !== id));
-            toast.success('Usuário excluído com sucesso');
+            toast.success('Usuário excluído com sucesso', { position: 'top-right' });
         }
         catch (error) {
             console.error('Erro ao excluir o usuário:', error);
-            toast.error('Erro ao excluir o usuário');
+            toast.error('Erro ao excluir o usuário', { position: 'top-right' });
         }
     };
 

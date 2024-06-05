@@ -22,13 +22,13 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
                     email: email
                 });
                 setUserToEdit(null);
-                toast.success('Usuário atualizado com sucesso');
+                toast.success('Usuário atualizado com sucesso', { position: 'top-right' });
             } else { //only new users
                 const response = await api.post('/users', {
                     name: name,
                     email: email
                 });
-                toast.success('Usuário salvo com sucesso');
+                toast.success('Usuário salvo com sucesso', { position: 'top-right' });
                 //Como a API não salva o usuário, adicionamos o novo usuário a lista
                 addUser(response.data);
             }
@@ -41,7 +41,7 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
         }
         catch (error) {
             console.error('Erro ao salvar usuário:', error);
-            toast.error('Erro ao salvar usuário');
+            toast.error('Erro ao salvar usuário', { position: 'top-right' });
         }
     
         
@@ -58,7 +58,7 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
                 placeholder="Digite o nome do usuário"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                className="mx-5 appearance-none bg-white border border-gray-300 rounded-md py-3 px-4 text-sm leading-tight focus:outline-none focus:border-blue-500 w-80"
+                className="mx-5 appearance-none bg-white border border-gray-300 rounded-md py-2 px-4 text-sm leading-tight focus:outline-none focus:border-blue-500 w-80 h-11"
             />
             <input 
                 type="text"
@@ -66,7 +66,7 @@ const UserForm = ({fetchUsers, userToEdit, setUserToEdit, addUser}) => {
                 placeholder="Digite o email do usuário"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                className="mx-5 appearance-none bg-white border border-gray-300 rounded-md py-3 px-4 text-sm leading-tight focus:outline-none focus:border-blue-500 w-80"
+                className="mx-5 appearance-none bg-white border border-gray-300 rounded-md py-2 px-4 text-sm leading-tight focus:outline-none focus:border-blue-500 w-80 h-11"
             />
             <button 
                 type="submit"
